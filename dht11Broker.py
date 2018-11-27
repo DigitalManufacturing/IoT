@@ -42,8 +42,8 @@ try:
 		# get Sensor Values
 		humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
 		
-		MQTT_TEMPERATURE_MSG = json.dumps({"TEMPERATURE": '{0:0.1f}'.format(temperature, humidity)})
-		MQTT_HUMIDITY_MSG = json.dumps({"HUMIDITY": '{1:0.1f}'.format(temperature, humidity)})
+		# MQTT_TEMPERATURE_MSG = json.dumps({"TEMPERATURE": '{0:0.1f}'.format(temperature, humidity)})
+		# MQTT_HUMIDITY_MSG = json.dumps({"HUMIDITY": '{1:0.1f}'.format(temperature, humidity)})
         	MQTT_FULL_MSG = json.dumps({"capabilityAlternateId": "IG_5B460280D08201081600C406F02CBA47", "sensorAlternateId":"fc32d1702c14820e","I_NE_CL_RaspberryTemperature": '{0:0.1f}'.format(temperature, humidity), "I_NE_CL_RaspberryHumidity": '{1:0.1f}'.format(temperature, humidity)})
 
 		# Print temperature y humidity with 1 decimal
