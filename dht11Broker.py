@@ -16,7 +16,7 @@ import paho.mqtt.client as mqtt
 brokerURL = "192.168.1.118"
 brokerPort = "1883"
 
-# DHT Sensor Type (Sensor Types: Adafruit_DHT.DHT11 or Adafruit_DHT.DHT22)
+# DHT Sensor Type
 sensor = Adafruit_DHT.DHT11
 
 # Configuracion del puerto GPIO al cual esta conectado  (GPIO 23)
@@ -42,10 +42,10 @@ try:
 		# get Sensor Values
 		humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
 		
-		#MQTT_TEMPERATURE_MSG = json.dumps({"TEMPERATURE": '{0:0.1f}'.format(temperature, humidity)})
-		#MQTT_HUMIDITY_MSG = json.dumps({"HUMIDITY": '{1:0.1f}'.format(temperature, humidity)})
-		MQTT_FULL_MSG = json.dumps({"HUMIDITY": '{1:0.1f}'.format(temperature, humidity), "TEMPERATURE": '{0:0.1f}'.format(temperature, humidity)})
-		
+		MQTT_TEMPERATURE_MSG = json.dumps({"TEMPERATURE": '{0:0.1f}'.format(temperature, humidity)})
+		MQTT_HUMIDITY_MSG = json.dumps({"HUMIDITY": '{1:0.1f}'.format(temperature, humidity)})
+        	MQTT_FULL_MSG = json.dumps({"capabilityAlternateId": "IG_5B460280D08201081600C406F02CBA47", "sensorAlternateId":"fc32d1702c14820e","I_NE_CL_RaspberryTemperature": '{0:0.1f}'.format(temperature, humidity), "I_NE_CL_RaspberryHumidity": '{1:0.1f}'.format(temperature, humidity)})
+
 		# Print temperature y humidity with 1 decimal
                 #	print('Temperature={0:0.1f}*  Humidity={1:0.1f}%'.format(temperature, humidity))
 
@@ -55,7 +55,7 @@ try:
                 print(MQTT_FULL_MSG)    
 
 		# sleep 1 sec
-		time.sleep(5)
+		time.sleep(10)
 
 # Exceptions
 except Exception,e:
